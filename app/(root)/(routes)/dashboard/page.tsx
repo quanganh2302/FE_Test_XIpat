@@ -3,8 +3,7 @@
 import React, { useEffect } from "react";
 import styles from "@/app/main.module.scss";
 import { cn } from "@/lib/utils";
-import { useState, useCallback } from "react";
-import { DatePickerWithRange } from "@/components/ui/date-range-picker";
+import { useState } from "react";
 import LineChartCustom from "@/components/sections/line-chart-custom";
 import ColumnChartCustom from "@/components/sections/column-chart-custom";
 import {
@@ -24,11 +23,11 @@ import {
 const Dashboard = () => {
   // Function get data custom
 
-  const [data, useData] = useState<DataPoint[]>([]);
+  const [data, setData] = useState<DataPoint[]>([]);
   useEffect(() => {
     const getData = async () => {
       const res = await generateLast30DaysData();
-      useData(res);
+      setData(res);
     };
     getData();
   }, []);
