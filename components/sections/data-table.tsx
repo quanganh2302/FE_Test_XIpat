@@ -332,7 +332,9 @@ function IndexTableWithViewsSearchFilterSorting() {
             {image ? image : ""}
           </Text>
         </IndexTable.Cell>
-        <IndexTable.Cell className=" sm:w-full max-w-[20px] overflow-hidden">{title}</IndexTable.Cell>
+        <IndexTable.Cell className=" sm:w-full max-w-[20px] overflow-hidden">
+          {title}
+        </IndexTable.Cell>
         <IndexTable.Cell>{!rule ? "0" : rule.length}</IndexTable.Cell>
         <IndexTable.Cell>{date}</IndexTable.Cell>
         <IndexTable.Cell>
@@ -411,7 +413,10 @@ function IndexTableWithViewsSearchFilterSorting() {
     </LegacyCard>
   );
 
-  function disambiguateLabel(key: string, value: string | any[]): string {
+  function disambiguateLabel(
+    key: string,
+    value: string | string[] | [number, number]
+  ): string {
     switch (key) {
       case "moneySpent":
         return `Money spent is between $${value[0]} and $${value[1]}`;

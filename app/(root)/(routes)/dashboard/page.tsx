@@ -24,6 +24,8 @@ const Dashboard = () => {
   // Function get data custom
 
   const [data, setData] = useState<DataPoint[]>([]);
+  const [filterRange, setFilterRange] = useState<string>("7");
+  const [filteredData, setFilteredData] = useState<DataPoint[]>([]);
   useEffect(() => {
     const getData = async () => {
       const res = await generateLast30DaysData();
@@ -32,18 +34,13 @@ const Dashboard = () => {
     getData();
   }, []);
 
-  if (!data) null;
-
   // Function filter data
-
-  const [filterRange, setFilterRange] = useState<string>("7");
-  const [filteredData, setFilteredData] = useState<DataPoint[]>([]);
 
   useEffect(() => {
     const filtered = filterDataByDateRange(data, filterRange);
     setFilteredData(filtered);
   }, [filterRange, data]);
-
+  if (!data) return null;
   return (
     <div className="flex flex-col gap-10 justify-start items-start p-4 w-full">
       <div className="w-full">
